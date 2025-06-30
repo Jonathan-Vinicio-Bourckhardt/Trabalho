@@ -1,0 +1,287 @@
+Sistema ClickUp – Plano de Testes de Cadastro
+TST-001 – Domínio Falso
+Objetivo: Verificar se o sistema bloqueia e-mails com domínios falsos.
+ Passos:
+Acessar a tela de cadastro.
+
+
+Preencher todas as informações obrigatórias.
+
+
+Inserir um e-mail com domínio diferente dos padrões aceitos.
+ Resultado esperado:
+
+
+Não deve avançar para a etapa de recebimento de código.
+
+
+Deve exibir o erro: “Users from this domain are blocked.”
+ Resultado obtido:
+
+
+Apareceu o erro conforme esperado.
+ Status: Aprovado
+
+
+
+TST-002 – E-mail Falso com Domínio Correto
+Objetivo: Verificar se o sistema aceita e-mails falsos com domínio válido.
+ Passos:
+Acessar a tela de cadastro.
+
+
+Preencher todas as informações obrigatórias.
+
+
+Usar um e-mail falso com domínio “gmail.com”.
+ Resultado esperado:
+
+
+Deve avançar para a etapa de recebimento de código.
+
+
+Código é enviado, mas não poderá ser validado pois o e-mail não existe.
+ Resultado obtido:
+
+
+Código enviado corretamente.
+ Status: Aprovado
+
+
+
+TST-003 – Nome Numérico
+Objetivo: Verificar se o sistema aceita nome composto apenas por números.
+ Passos:
+Acessar a tela de cadastro.
+
+
+Preencher todas as informações.
+
+
+Inserir nome apenas com números.
+ Resultado esperado:
+
+
+Sistema deve reprovar o campo nome.
+ Resultado obtido:
+
+
+Sistema aceitou números como nome.
+ Status: Reprovado
+
+
+
+TST-004 – Senha Forte
+Objetivo: Verificar se o sistema exige critérios de senha forte.
+ Passos:
+Acessar a tela de cadastro.
+
+
+Preencher todas as informações, exceto a senha.
+
+
+Tentar prosseguir sem senha – sistema deve exigir preenchimento.
+
+
+Inserir senha muito fraca (ex.: apenas uma letra) – sistema deve recusar.
+
+
+Inserir senha válida com: mínimo de 8 caracteres, letra maiúscula, número ou caractere especial.
+ Resultado esperado:
+
+
+Só aprova senha que cumpra todos os requisitos.
+ Resultado obtido:
+
+
+Sistema validou corretamente.
+ Status: Aprovado
+
+
+
+TST-005 – Logo
+Objetivo: Verificar se clicar na logo retorna para a tela inicial.
+ Passos:
+Acessar a tela de cadastro.
+
+
+Clicar na logo.
+ Resultado esperado:
+
+
+Sistema volta para a tela inicial.
+ Resultado obtido:
+
+
+Sistema retornou corretamente.
+ Status: Aprovado
+
+
+
+TST-006 – Botão de Ajuda
+Objetivo: Verificar se o botão de ajuda abre a tela correta.
+ Passos:
+Acessar a tela de cadastro.
+
+
+Clicar na opção “Ajuda”.
+ Resultado esperado:
+
+
+Abre uma nova tela com instruções de suporte.
+ Resultado obtido:
+
+
+Tela de ajuda abriu corretamente.
+ Status: Aprovado
+
+
+
+TST-007 – Senha Visível
+Objetivo: Verificar se há opção de mostrar/ocultar senha no campo.
+ Passos:
+Acessar a tela de cadastro.
+
+
+Digitar a senha – senha oculta por padrão.
+
+
+Clicar em “Mostrar” – senha deve ficar visível.
+
+
+Clicar em “Ocultar” – senha volta a ficar oculta.
+ Resultado obtido:
+
+
+Sistema exibe e oculta a senha conforme esperado.
+ Status: Aprovado
+
+
+
+TST-008 – Política de Privacidade e Termos
+Objetivo: Verificar se os links de política e termos estão funcionais.
+ Passos:
+Acessar a tela de cadastro.
+
+
+Clicar em “Política de Privacidade” – sistema abre o documento.
+
+
+Clicar em “Termos de Serviço” – sistema abre o documento.
+ Resultado obtido:
+
+
+Ambos os documentos são exibidos corretamente.
+ Status: Aprovado
+
+
+
+ TST-009 – Continuar com o Google
+Objetivo: Verificar login/cadastro usando conta Google.
+ Passos:
+Acessar a tela de cadastro.
+
+
+Selecionar opção “Continuar com o Google”.
+ Resultado esperado:
+
+
+Sistema autoriza o cadastro/login com a conta Google.
+ Resultado obtido:
+
+
+Cadastro autorizado.
+ Status: Aprovado
+
+
+
+TST-010 – E-mail Existente
+Objetivo: Verificar se o sistema impede cadastro com e-mail já existente.
+ Passos:
+Acessar a tela de cadastro.
+
+
+Tentar cadastrar com um e-mail já registrado.
+ Resultado esperado:
+
+
+Sistema bloqueia o cadastro.
+ Resultado obtido:
+
+
+Sistema não autorizou o cadastro duplicado.
+ Status: Aprovado
+
+
+
+Plano de Backup e Recuperação
+Objetivo:
+ Assegurar proteção e recuperação dos dados do sistema em caso de falhas, perda de informações, ataques cibernéticos ou erros humanos, garantindo a continuidade e integridade das operações.
+
+Frequência
+Backup semanal, realizado toda segunda-feira às 06:00, evitando que erros cometidos durante a semana fiquem sem recuperação.
+
+
+
+Forma de Backup
+Automatizado com ferramentas e scripts especializados.
+
+
+Opção de backup manual para casos excepcionais ou dados críticos.
+
+
+
+Ferramentas / Sistemas
+Rclone + Google Drive: Backup em nuvem sincronizado com pastas e banco de dados.
+
+
+Alternativa: Veeam Backup & Replication.
+
+
+
+Conteúdo Salvo
+Banco de dados: Todos os dados essenciais do sistema.
+
+
+Arquivos do sistema: Configurações, scripts e documentos relevantes.
+
+
+Logs importantes: Para análise de falhas futuras.
+
+
+
+Processo de Recuperação
+Etapas para restauração:
+Acesso ao ambiente de recuperação (servidor de testes ou produção).
+
+
+Restauração do backup mais recente completo.
+
+
+Aplicação de backups incrementais (se necessário).
+
+
+Verificação de integridade dos dados.
+
+
+Retorno gradual das operações.
+
+
+
+Tempo de Indisponibilidade Estimado
+Recuperação simples (banco de dados): 15 a 20 minutos.
+
+
+Recuperação completa: Até 2 horas (dependendo do volume e de fatores externos como internet e capacidade das máquinas).
+
+
+
+Garantia de Integridade
+Testes periódicos de restauração (simulações mensais).
+
+
+Comparação de logs e execução de testes automatizados no ambiente restaurado.
+
+
+Verificação de consistência do banco de dados via comandos SQL ou ferramentas especializadas.
+
